@@ -69,7 +69,13 @@ module.exports = new Hello();
 
 ## API
 
-Example configuration file
+### initialize(path-of-configuration-file)
+set path of configuration file
+
+### resolve(id-class)
+retrieve class specified with id set in configuration file
+
+## Example configuration file
 
 ```
 {
@@ -96,10 +102,10 @@ unique id name
 ### class 
 path of class
 
-### initialize 
+### initialize (optional)
 initialize method
 
-### set 
+### set (optional)
 "method": name of method for dependency injection,
 using "value" for string or number or "bean" for other module declared in configuration file
 
