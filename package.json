@@ -1,0 +1,24 @@
+{
+  "author": "Marco Murdocca",
+  "name": "ioccontainer",
+  "description": "Implement dependency injection (Spring evangelist)",
+  "version": "0.4.0",
+  "repository": {
+    "url": "https://github.com/hormander/ioccontainer"
+  },
+  "main": "./lib/ioccontainer.js",
+  "keywords": [
+    "dependency injection",
+    "spring",
+    "bean",
+    "hollywod principle",
+    "inversion of control"
+  ],
+  "bin": {
+    "ioccontainer": "./lib/ioccontainer.js"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
