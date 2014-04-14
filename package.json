@@ -1,10 +1,11 @@
 {
-  "author": "Marco Murdocca",
+  "author": "Marco Murdocca (marco.murdocca@xenialab.it)",
   "name": "ioccontainer",
   "description": "Implement dependency injection (Spring evangelist)",
-  "version": "0.4.0",
+  "version": "0.4.6",
   "repository": {
-    "url": "https://github.com/hormander/ioccontainer"
+  	"type" : "git",
+    	"url": "https://github.com/hormander/ioccontainer"
   },
   "main": "./lib/ioccontainer.js",
   "keywords": [
@@ -20,5 +21,7 @@
   "dependencies": {},
   "engines": {
     "node": "*"
-  }
+  },
+  "license": "GPL",
+  "homepage": "https://github.com/hormander/ioccontainer"
 }
