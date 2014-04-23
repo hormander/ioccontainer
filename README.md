@@ -9,8 +9,6 @@ This is a dependency injection module
 npm install ioccontainer
 ```
 
-## Introduction
-
 ## Example
 
 Main file: hello-world.js
@@ -19,7 +17,7 @@ Main file: hello-world.js
 "use strict";
 
 var ioc = require("ioccontainer");
-ioc.initialize("/var/www/html/hello-world/ioc-config");
+ioc.initialize("ioc-config.json");
 
 var hello = ioc.resolve("hello");
 console.log(hello.getMessage());
@@ -32,7 +30,7 @@ Application context file: ioc-config.js
 	"bean" : [
 		{ 
 			"id": "hello", 
-			"class": "/var/www/html/hello-world/hello",
+			"class": "/path/hello.js",
 			"init": "initialize",
 			"set" : [
 				{ "method": "setMessage", "value": "Hello world !!!!" }
@@ -51,6 +49,7 @@ Bean file: hello.js
 var message;
 
 var Hello = function() {
+	message = "";
 };
 
 Hello.prototype.initialize = function() {
@@ -67,6 +66,12 @@ Hello.prototype.getMessage = function() {
 module.exports = new Hello();
 ```
 
+Run
+
+```bash
+node hello-world.js
+```
+
 ## API
 
 ### initialize(path-of-configuration-file)
@@ -80,34 +85,38 @@ retrieve class specified with id set in configuration file
 ```
 {
 	"bean" : [
+		{ "id": "require", "class": "npm_module" },
+		{ "id": "other", "class": "other.js" },
+		{ "id": "json", "class": "file.json" },
 		{ 
-			"id": "js-class", 
-			"class": "path/js-class",
+			"id": "mymodule", 
+			"class": "module.js",
 			"init": "initialize",
 			"set" : [
 				{ "method": "setValue", "value": "My value" },
+				{ "method": "setJSON", "ref": "json" },
+				{ "method": "setRequire", "ref": "require" },
 				{ "method": "setBean", "ref": "other" }
 				] 
 			}
-	],
-	{ "id": "other", "class": "path/other.js" }
+	]
 }
 ```
 
 For any javascript module declare a bean with:
 
-### id 
+### id [required]
 unique id name
 
-### class 
+### class [required]
 path of class
 
-### initialize (optional)
+### initialize [optional]
 initialize method
 
-### set (optional)
+### set [optional]
 "method": name of method for dependency injection,
-using "value" for string or number or "bean" for other module declared in configuration file
+using "value" for string or number or "ref" for other module declared in configuration file
 
 ## Contributors
 
