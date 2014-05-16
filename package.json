@@ -1,14 +1,11 @@
 {
-  "author": {
-    "name": "Marco Murdocca",
-    "url": "marco.murdocca@xenialab.it"
-  },
+  "author": "Marco Murdocca (marco.murdocca@xenialab.it)",
   "name": "ioccontainer",
   "description": "Dependency injection implementation (Spring evangelist)",
-  "version": "0.5.3",
+  "version": "0.5.5",
   "repository": {
-    "type": "git",
-    "url": "https://github.com/hormander/ioccontainer"
+  	"type" : "git",
+    	"url": "https://github.com/hormander/ioccontainer"
   },
   "main": "./lib/ioccontainer.js",
   "keywords": [
@@ -28,16 +25,5 @@
     "node": "*"
   },
   "license": "GPL",
-  "homepage": "https://github.com/hormander/ioccontainer",
-  "readme": "IocContainer\n-------------\n\nThis is a dependency injection module\n\n## Install\n\n```bash\nnpm install ioccontainer\n```\n\n## Example\n\nMain file: hello-world.js\n\n```hello-world.js\n\"use strict\";\n\nvar ioc = require(\"ioccontainer\");\nioc.initialize(\"ioc-config.json\");\n\nvar hello = ioc.resolve(\"hello\");\nconsole.log(hello.getMessage());\n```\n\nApplication context file: ioc-config.js\n\n```ioc-config.js\n{\n\t\"bean\" : [\n\t\t{ \n\t\t\t\"id\": \"hello\", \n\t\t\t\"class\": \"/path/hello.js\",\n\t\t\t\"init\": \"initialize\",\n\t\t\t\"set\" : [\n\t\t\t\t{ \"method\": \"setMessage\", \"value\": \"Hello world !!!!\" }\n\t\t\t\t] \n\t\t\t}\n\t]\n\n}\n```\n\nBean file: hello.js\n\n```hello.js\n\"use strict\";\n\nvar message;\n\nvar Hello = function() {\n\tmessage = \"\";\n};\n\nHello.prototype.initialize = function() {\n};\n\nHello.prototype.setMessage = function(value) {\n\tmessage = value;\n};\n\nHello.prototype.getMessage = function() {\n\treturn message;\n};\n\nmodule.exports = new Hello();\n```\n\nRun\n\n```bash\nnode hello-world.js\n```\n\n## API\n\n### initialize(path-of-configuration-file)\nset path of configuration file\n\n### resolve(id-class)\nretrieve class specified with id set in configuration file\n\n## Example configuration file\n\n```\n{\n\t\"bean\" : [\n\t\t{ \"id\": \"require\", \"class\": \"npm_module\" },\n\t\t{ \"id\": \"other\", \"class\": \"other.js\" },\n\t\t{ \"id\": \"json\", \"class\": \"file.json\" },\n\t\t{ \n\t\t\t\"id\": \"mymodule\", \n\t\t\t\"class\": \"module.js\",\n\t\t\t\"init\": \"initialize\",\n\t\t\t\"set\" : [\n\t\t\t\t{ \"method\": \"setValue\", \"value\": \"My value\" },\n\t\t\t\t{ \"method\": \"setJSON\", \"ref\": \"json\" },\n\t\t\t\t{ \"method\": \"setRequire\", \"ref\": \"require\" },\n\t\t\t\t{ \"method\": \"setBean\", \"ref\": \"other\" }\n\t\t\t\t] \n\t\t\t}\n\t]\n}\n```\n\nFor any javascript module declare a bean with:\n\n### id [required]\nunique id name\n\n### class [required]\npath of class\n\n### initialize [optional]\ninitialize method\n\n### set [optional]\n\"method\": name of method for dependency injection,\nusing \"value\" for string or number or \"ref\" for other module declared in configuration file\n\n## Contributors\n\n- [Marco Murdocca aka `hormander`](https://github.com/hormander)\n",
-  "readmeFilename": "README.md",
-  "bugs": {
-    "url": "https://github.com/hormander/ioccontainer/issues"
-  },
-  "_id": "ioccontainer@0.5.3",
-  "dist": {
-    "shasum": "f5d53e9dab9d198d3d1cdb6350d893c32a189867"
-  },
-  "_from": "ioccontainer@*",
-  "_resolved": "https://registry.npmjs.org/ioccontainer/-/ioccontainer-0.5.3.tgz"
+  "homepage": "https://github.com/hormander/ioccontainer"
 }
